@@ -3,6 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+#include "GamePlay.h"
+#include "MainMenu.h"
+
+enum class Scene
+{
+	None,
+	MainMenu,
+	GamePlay
+};
+
 
 class Game
 {
@@ -13,11 +23,16 @@ public:
 
 private:
 
-	void update(double dt);
+	void update(double t_deltaTime);
 	void render();
 	void processEvents();
-	void processGameEvents(sf::Event&);
+
+	// Scenes
+	GamePlay gameplay;
+	MainMenu mainMenu;
 
 	// main window
 	sf::RenderWindow m_window;
+
+	static Scene currentScene;
 };

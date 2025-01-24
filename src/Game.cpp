@@ -6,6 +6,8 @@
 // Our target FPS
 static double const FPS{ 60.0f };
 
+Scene Game::currentScene = Scene::MainMenu;
+
 ////////////////////////////////////////////////////////////
 Game::Game()
 	: m_window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32), "SFML Playground", sf::Style::Default)
@@ -39,46 +41,61 @@ void Game::run()
 ////////////////////////////////////////////////////////////
 void Game::processEvents()
 {
-	sf::Event event;
-	while (m_window.pollEvent(event))
+	sf::Event newEvent;
+	while (m_window.pollEvent(newEvent))
 	{
-		if (event.type == sf::Event::Closed)
+		if (newEvent.type == sf::Event::Closed)
 		{
 			m_window.close();
 		}
-		processGameEvents(event);
+		
+		switch (Game::currentScene)
+		{
+		case Scene::None:
+			break;
+		case Scene::GamePlay:
+			gameplay.processEvents(newEvent);
+			break;
+		case Scene::MainMenu:
+			mainMenu.processEvents(newEvent);
+			break;
+		}
 	}
 }
 
-////////////////////////////////////////////////////////////
-void Game::processGameEvents(sf::Event& event)
-{
-	// check if the event is a a mouse button release
-	if (sf::Event::KeyPressed == event.type)
-	{
-		switch (event.key.code)
-		{
-		case sf::Keyboard::Escape:
-			m_window.close();
-			break;
-		default:
-			break;
-		}
-	}
-}
 
 // What happens every frame
-void Game::update(double dt)
+void Game::update(double t_deltaTime)
 {
-
+	switch (Game::currentScene)
+	{
+	case Scene::None:
+		break;
+	case Scene::GamePlay:
+		gameplay.update(t_deltaTime);
+		break;
+	case Scene::MainMenu:
+		mainMenu.update(t_deltaTime);
+		break;
+	}
 }
 
 // Render to the window
 void Game::render()
 {
-	m_window.clear(sf::Color::Black);
+	m_window.clear(sf::Color::White);
 
-	
+	switch (Game::currentScene)
+	{
+	case Scene::None:
+		break;
+	case Scene::GamePlay:
+		gameplay.render(m_window);
+		break;
+	case Scene::MainMenu:
+		mainMenu.render(m_window);
+		break;
+	}
 
 	m_window.display();
 }

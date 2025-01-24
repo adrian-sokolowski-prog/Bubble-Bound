@@ -19,10 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GamePlay.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="include\Game.h" />
+    <ClInclude Include="MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>

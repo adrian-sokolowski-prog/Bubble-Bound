@@ -16,6 +16,7 @@ public:
 
 private:
 
+	void edgeCollision();
 	void checkDirection();
 	void applyFriction();
 	void movementDrift();

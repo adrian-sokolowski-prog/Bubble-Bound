@@ -13,13 +13,23 @@ GamePlay::GamePlay()
 	{	
 		std::cout << "Couldnt create texture\n";
 	}
+
+	if (!backgroundTexture.loadFromFile("Assets/Art/background.png"))
+	{
+		std::cout << "couldnt load background";
+	}
+	backgroundTexture.setRepeated(true);
+	backgroundSprite.setTexture(backgroundTexture);
+	backgroundSprite.setPosition(0.0f, -20000 + SCREEN_HEIGHT);
+	backgroundSprite.setTextureRect(sf::IntRect(0,0, 1200, 20000));
 }
 
 void GamePlay::update(double t_deltaTime)
 {
 	moveView();
-
+	brightnessShader.setUniform("height", std::abs(player.getPos().y));
 	player.move();
+
 	sf::CircleShape shape;
 	m_oxygen.Update(t_deltaTime, player.getBody());
 
@@ -50,6 +60,8 @@ void GamePlay::update(double t_deltaTime)
 void GamePlay::render(sf::RenderWindow& t_window)
 {
 	renderTexture.clear();
+
+	renderTexture.draw(backgroundSprite, &brightnessShader);
 
 	m_oxygen.Render(renderTexture);
 	
@@ -95,15 +107,10 @@ void GamePlay::loadShader() // shader.setUniform("texture", sf::Shader::CurrentT
 	noiseTexture.setSmooth(true);
 	underWaterShader.setUniform("noiseTexture", noiseTexture);
 
-
-	if (!tiles.loadFromFile("Assets/Shaders/tiles.jpg"))
+	if (!brightnessShader.loadFromFile("Assets/Shaders/DarkToBright.frag", sf::Shader::Fragment))
 	{
-		std::cout << "Couldnt load tiles texture\n";
+		std::cout << "COULDN'T LOAD DARK-TO-BRIGHT SHADER \n";
 	}
-	tiles.setRepeated(true);
-	tileSprite.setTexture(tiles);
-	tileSprite.setTextureRect(sf::IntRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
-
 }
 
 void GamePlay::moveView()

@@ -18,16 +18,16 @@ public:
 
 private:
 
+	sf::Texture backgroundTexture;
+	sf::Sprite backgroundSprite;
+
 	// Shader
 	sf::Clock clock;
 	sf::Texture noiseTexture;
 	void loadShader();
 	sf::Shader underWaterShader;
+	sf::Shader brightnessShader;
 	sf::RenderTexture renderTexture;
-
-	// TEMP TEXTURE
-	sf::Texture tiles;
-	sf::Sprite tileSprite;
 
 	void moveView();
 	sf::View view;

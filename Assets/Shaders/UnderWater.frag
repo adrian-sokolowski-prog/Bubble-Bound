@@ -9,7 +9,7 @@ void main()
     float frequency = 0.05;
 
     // Sample the noise texture (use UV scaling and animation)
-    vec2 noiseUV = uv * 0.6 + vec2(cos(time * frequency), sin(time * frequency));
+    vec2 noiseUV = uv * 0.6 + vec2(0.0, sin(time * frequency));
     float n = texture2D(noiseTexture, noiseUV).r;  // Use the red channel as noise
 
     // Apply the noise to distort UV coordinates

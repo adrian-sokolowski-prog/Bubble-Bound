@@ -43,7 +43,6 @@ void GamePlay::update(double t_deltaTime)
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
-	m_oxygen.Render(t_window);
 	
 	t_window.setView(view);
 
@@ -56,6 +55,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 			t_window.draw(e.getSprite());
 		}
 	}
+	m_oxygen.Render(t_window);
 }
 
 void GamePlay::processEvents(sf::Event& t_event)
@@ -69,4 +69,5 @@ void GamePlay::processKeys(sf::Event& t_event)
 void GamePlay::moveView()
 {
 	view.setCenter(SCREEN_WIDTH / 2.0f, player.getPos().y - 200);
+	m_oxygen.MoveOxygenUI(view.getCenter());
 }

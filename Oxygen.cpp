@@ -8,9 +8,9 @@ Oxygen::Oxygen()
 
 void Oxygen::Render(sf::RenderWindow& t_window)
 {
+	 m_plant.Render(t_window);
 	t_window.draw(m_transparentOxygen);
 	t_window.draw(m_fillOxygen);
-	m_plant.Render(t_window);
 }
 
 void Oxygen::Update(float t_dt, sf::CircleShape t_player)
@@ -27,11 +27,18 @@ void Oxygen::Update(float t_dt, sf::CircleShape t_player)
 	}
 	if (m_collision.CircleSpriteCollision(t_player, m_plant.GetPlant()))
 	{
-		size.x++;
+		if(size.x < 200)
+			size.x++;
 
 	}
 
 	m_fillOxygen.setSize(size);
+}
+
+void Oxygen::MoveOxygenUI(sf::Vector2f t_viewCenter)
+{
+	m_fillOxygen.setPosition(t_viewCenter + m_barPositionOffset);
+	m_transparentOxygen.setPosition(t_viewCenter + m_barPositionOffset);
 }
 
 void Oxygen::init()

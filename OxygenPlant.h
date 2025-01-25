@@ -6,7 +6,7 @@ class OxygenPlant
 public:
 	OxygenPlant();
 
-	void Render(sf::RenderWindow& t_window);
+	void Render(sf::RenderTexture& t_renderTexture);
 	void Update(float t_dt);
 	sf::Sprite& GetPlant();
 private:

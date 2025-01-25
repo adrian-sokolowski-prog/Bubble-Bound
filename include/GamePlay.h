@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Oxygen.h"
 #include "Enemy.h"
+#include <iostream>
 
 class GamePlay
 {
@@ -16,6 +17,17 @@ public:
 	void processKeys(sf::Event& t_event);
 
 private:
+
+	// Shader
+	sf::Clock clock;
+	sf::Texture noiseTexture;
+	void loadShader();
+	sf::Shader underWaterShader;
+	sf::RenderTexture renderTexture;
+
+	// TEMP TEXTURE
+	sf::Texture tiles;
+	sf::Sprite tileSprite;
 
 	void moveView();
 	sf::View view;

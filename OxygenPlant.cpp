@@ -10,9 +10,9 @@ OxygenPlant::OxygenPlant()
 	m_oxygenPlant.setTexture(m_plantTexture);
 }
 
-void OxygenPlant::Render(sf::RenderWindow& t_window)
+void OxygenPlant::Render(sf::RenderTexture& t_renderTexture)
 {
-	t_window.draw(m_oxygenPlant);
+	t_renderTexture.draw(m_oxygenPlant);
 }
 
 void OxygenPlant::Update(float t_dt)

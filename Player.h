@@ -27,7 +27,7 @@ private:
 	sf::Vector2f velocity;
 	float speed = 0.15f;
 	int driftAngle = -90;
-	const float DRIFT_INTENCITY = 0.05f;
+	const float DRIFT_INTENCITY = 0.07f;
 
 	// Drift change timer
 	const int TIME_BETWEEN_DRIFT_CHANGE = 10;

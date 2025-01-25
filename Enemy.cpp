@@ -30,11 +30,12 @@ void Enemy::move()
 	}
 }
 
-void Enemy::activate(sf::Vector2f t_targetPos)
+void Enemy::activate(sf::Vector2f t_targetPos, float t_viewCenter)
 {
 	// Set position
-	position.x = (rand() % SCREEN_WIDTH) + RADIUS;
-	position.y = 0.0f;
+	int randChange = (rand() % 400) - 200;
+	position.x = t_targetPos.x  + randChange;
+	position.y = (t_viewCenter - SCREEN_HEIGHT / 2.0f) - 150;
 
 	// Movement Calc
 	float lenght = 0.0f;

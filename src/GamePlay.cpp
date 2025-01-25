@@ -47,8 +47,7 @@ void GamePlay::update(double t_deltaTime)
 		{
 			if (!enemies[i].active)
 			{
-
-				enemies[i].activate(player.getPos());
+				enemies[i].activate(player.getPos(), view.getCenter().y);
 				break;
 			}
 			

@@ -11,7 +11,7 @@ public:
 	sf::Vector2f getPos() { return position; }
 	void move();
 
-	void activate(sf::Vector2f t_targetPos);
+	void activate(sf::Vector2f t_targetPos, float t_viewCenter);
 
 
 	bool active = false;

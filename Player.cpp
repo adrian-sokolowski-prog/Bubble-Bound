@@ -14,8 +14,8 @@ Player::Player()
 		std::cout << "Couldnt load bubble texture \n";
 	}
 	sprite.setTexture(texture);
-	sprite.setOrigin(640, 627);
-	sprite.setScale(0.05f, 0.05f);
+	sprite.setOrigin(211.5, 213.5);
+	sprite.setScale(0.2f, 0.2f);
 	sprite.setPosition(position);
 }
 

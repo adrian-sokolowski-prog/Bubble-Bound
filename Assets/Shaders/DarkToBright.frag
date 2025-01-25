@@ -10,10 +10,10 @@ float normalize(float t_val, int t_min, int t_max)
 void main()
 {
     vec2 uv = gl_TexCoord[0].xy;
-    int midWayPoint = 10000;
-    int endPoint = 20000;
+    int midWayPoint = 20000;
+    int endPoint = 40000;
 
-    float brightnessStrength = 0.2;
+    float brightnessStrength = 0.15;
     float darknessStrength = 0.5;
 
     float brightnessLevel = normalize(height, midWayPoint, endPoint) * brightnessStrength;

@@ -20,14 +20,16 @@ GamePlay::GamePlay()
 	}
 	backgroundTexture.setRepeated(true);
 	backgroundSprite.setTexture(backgroundTexture);
-	backgroundSprite.setPosition(0.0f, -20000 + SCREEN_HEIGHT);
-	backgroundSprite.setTextureRect(sf::IntRect(0,0, 1200, 20000));
+	backgroundSprite.setPosition(0.0f, -40000 + SCREEN_HEIGHT);
+	backgroundSprite.setTextureRect(sf::IntRect(0,0, 1200, 40000));
 }
 
 void GamePlay::update(double t_deltaTime)
 {
 	moveView();
 	brightnessShader.setUniform("height", std::abs(player.getPos().y));
+
+
 	player.move();
 
 	sf::CircleShape shape;
@@ -45,15 +47,24 @@ void GamePlay::update(double t_deltaTime)
 		{
 			if (!enemies[i].active)
 			{
+
 				enemies[i].activate(player.getPos());
 				break;
 			}
+			
 		}
 	}
-
+	m_oxygen.ChangePosition(player.getPos(), view);
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
 		enemies[i].move();
+
+		if (m_collision.CircleSpriteCollision(player.getBody(), enemies[i].getSprite()) && !enemies[i].m_collied && enemies[i].active)
+		{
+			std::cout << "Damage" << std::endl;
+			enemies[i].m_collied = true;
+			m_oxygen.TakeDMG(20);
+		}
 	}
 }
 
@@ -63,6 +74,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	renderTexture.draw(backgroundSprite, &brightnessShader);
 
+	renderTexture.draw(player.getBody());
 	m_oxygen.Render(renderTexture);
 	
 	renderTexture.setView(view);
@@ -116,4 +128,5 @@ void GamePlay::loadShader() // shader.setUniform("texture", sf::Shader::CurrentT
 void GamePlay::moveView()
 {
 	view.setCenter(SCREEN_WIDTH / 2.0f, player.getPos().y - 200);
+	m_oxygen.MoveOxygenUI(view.getCenter());
 }

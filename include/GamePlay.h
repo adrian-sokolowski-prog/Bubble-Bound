@@ -8,7 +8,6 @@ class GamePlay
 public:
 	GamePlay();
 
-	void loadTextures();
 
 	void update(double t_deltaTime);
 	void render(sf::RenderWindow& t_window);
@@ -18,9 +17,10 @@ public:
 private:
 
 	Player player;
-
-	std::vector<Enemy> enemies;
-	sf::Texture enemyTexture;
+	
+	static const int MAX_ENEMIES = 10;
+	int enemyAmount = 0;
+	Enemy enemies[MAX_ENEMIES];
 
 	// Enemy spawn timer
 	const int TIME_BETWEEN_SPAWNS = 2 * 60;

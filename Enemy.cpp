@@ -1,9 +1,14 @@
 #include "Enemy.h"
+#include "Globals.h"
 
-Enemy::Enemy(sf::Texture& t_texture, sf::Vector2f t_targetPos) : texture(t_texture)
+Enemy::Enemy()
 {
+	if (!texture.loadFromFile("Assets/Art/enemy.png"))
+	{
+		std::cout << "Couldnt load enemy texture \n";
+	}
+	// Sprite
 	sprite.setTexture(texture);
-
 	position = { 200, 200 };
 	sprite.setPosition(position);
 	sprite.setOrigin(731, 721);
@@ -12,16 +17,38 @@ Enemy::Enemy(sf::Texture& t_texture, sf::Vector2f t_targetPos) : texture(t_textu
 
 void Enemy::move()
 {
-	// Variables
-	float distance = 0.0f;
-	float angle = 0.0f;
-	sf::Vector2f directionVec = { 0.0f, 0.0f };
+	if (active)
+	{
+		position += velocity;
+		sprite.setPosition(position);
 
-	velocity.x = std::cos(degreesToRadians(angle)) * speed;
-	velocity.y = std::sin(degreesToRadians(angle)) * speed;
+		if (position.y > SCREEN_HEIGHT + RADIUS)
+		{
+			position = { -1000, 0 };
+			active = false;
+		}
+	}
+}
 
-	sprite.setRotation(angle);
+void Enemy::activate(sf::Vector2f t_targetPos)
+{
+	// Set position
+	position.x = (rand() % SCREEN_WIDTH) + RADIUS;
+	position.y = 0.0f;
 
-	position += velocity;
-	sprite.setPosition(position);
+	// Movement Calc
+	float lenght = 0.0f;
+	sf::Vector2f heading(0.0f, 0.0f);
+
+	heading.x = (t_targetPos.x) - position.x;
+	heading.y = (t_targetPos.y) - position.y;
+	lenght = sqrtf((heading.x * heading.x) + (heading.y * heading.y)); // find the distance
+
+	heading = heading / lenght;
+	heading.x *= speed; // change speed to the actual speed
+	heading.y *= speed; // change speed to the actual speed
+	velocity = heading;
+
+	// Activate
+	active = true;
 }

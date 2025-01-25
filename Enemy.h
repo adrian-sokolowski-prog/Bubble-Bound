@@ -5,27 +5,27 @@
 class Enemy
 {
 public:
-	Enemy(sf::Texture& t_texture, sf::Vector2f t_targetPos);
+	Enemy();
 
 	sf::Sprite getSprite() { return sprite; }
+	sf::Vector2f getPos() { return position; }
 
 	void move();
+
+	void activate(sf::Vector2f t_targetPos);
+
+
+	bool active = false;
 
 private:
 
 	sf::Sprite sprite;
-	sf::Texture& texture;
+	sf::Texture texture;
 
 	const int RADIUS = 30;
 
 	sf::Vector2f position;
 	sf::Vector2f velocity;
 	int speed = 5;
-
-	sf::Vector2f targetPos;
-
-	bool active = true;
-
-	float degreesToRadians(int t_degrees) { return t_degrees * (3.14f / 180); }
 };
 

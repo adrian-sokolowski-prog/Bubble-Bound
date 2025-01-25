@@ -1,18 +1,9 @@
 #include "GamePlay.h"
+#include "Globals.h"
 
 GamePlay::GamePlay()
 {
 	srand(time(nullptr));
-
-	loadTextures();
-}
-
-void GamePlay::loadTextures()
-{
-	if (!enemyTexture.loadFromFile("Assets/Art/enemy.png"))
-	{
-		std::cout << "Couldnt load enemy texture \n";
-	}
 }
 
 void GamePlay::update(double t_deltaTime)
@@ -27,12 +18,19 @@ void GamePlay::update(double t_deltaTime)
 	{
 		spawnTimer = 0;
 
-		enemies.push_back(Enemy(enemyTexture, player.getPos()));
+		for (int i = 0; i < MAX_ENEMIES; i++)
+		{
+			if (!enemies[i].active)
+			{
+				enemies[i].activate(player.getPos());
+				break;
+			}
+		}
 	}
 
-	for (Enemy& e : enemies)
+	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
-		e.move();
+		enemies[i].move();
 	}
 }
 
@@ -42,7 +40,10 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	for (Enemy& e : enemies)
 	{
-		t_window.draw(e.getSprite());
+		if (e.active)
+		{
+			t_window.draw(e.getSprite());
+		}
 	}
 }
 

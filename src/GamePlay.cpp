@@ -19,6 +19,7 @@ void GamePlay::update(double t_deltaTime)
 {
 	moveView();
 
+
 	player.move();
 	sf::CircleShape shape;
 	m_oxygen.Update(t_deltaTime, player.getBody());
@@ -42,7 +43,7 @@ void GamePlay::update(double t_deltaTime)
 			
 		}
 	}
-
+	m_oxygen.ChangePosition(player.getPos(), view);
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
 		enemies[i].move();

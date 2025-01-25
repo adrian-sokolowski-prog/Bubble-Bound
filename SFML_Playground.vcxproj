@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="include\Game.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Oxygen.cpp" />
     <ClCompile Include="OxygenPlant.cpp" />

@@ -29,6 +29,20 @@ void Player::move()
 	position += velocity;
 	body.setPosition(position);
 	sprite.setPosition(position);
+
+	edgeCollision();
+}
+
+void Player::edgeCollision()
+{
+	if (position.x > SCREEN_WIDTH - RADIUS)
+	{
+		position.x = SCREEN_WIDTH - RADIUS;
+	}
+	else if (position.x < RADIUS)
+	{
+		position.x = RADIUS;
+	}
 }
 
 void Player::checkDirection()

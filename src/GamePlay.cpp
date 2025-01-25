@@ -2,17 +2,16 @@
 
 GamePlay::GamePlay()
 {
-	circle.setRadius(50);
-	circle.setFillColor(sf::Color::Blue);
 }
 
 void GamePlay::update(double t_deltaTime)
 {
+	player.move();
 }
 
-void GamePlay::render(sf::RenderWindow& t_window) const
+void GamePlay::render(sf::RenderWindow& t_window)
 {
-	t_window.draw(circle);
+	t_window.draw(player.getBody());
 }
 
 void GamePlay::processEvents(sf::Event& t_event)

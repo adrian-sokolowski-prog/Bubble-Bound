@@ -6,7 +6,7 @@
 // Our target FPS
 static double const FPS{ 60.0f };
 
-Scene Game::currentScene = Scene::MainMenu;
+Scene Game::currentScene = Scene::GamePlay;
 
 ////////////////////////////////////////////////////////////
 Game::Game()

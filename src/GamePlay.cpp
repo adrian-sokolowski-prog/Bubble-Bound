@@ -2,6 +2,7 @@
 
 GamePlay::GamePlay()
 {
+	srand(time(nullptr));
 }
 
 void GamePlay::update(double t_deltaTime)

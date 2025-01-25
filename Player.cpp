@@ -15,6 +15,8 @@ void Player::move()
 	checkDirection();
 	applyFriction();
 
+	movementDrift();
+
 	position += velocity;
 	body.setPosition(position);
 }
@@ -44,6 +46,27 @@ void Player::applyFriction()
 {
 	velocity.x *= FRICTION;
 	velocity.y *= FRICTION;
+}
 
-	velocity.y -= 0.05f;
+void Player::movementDrift()
+{
+	
+
+	if (driftTimer < TIME_BETWEEN_DRIFT_CHANGE)
+	{
+		driftTimer++;
+	}
+	else
+	{
+		int randChange = (rand() % 30) - 10;
+		driftAngle += randChange;
+		driftTimer = 0;
+	}
+
+
+	drift.x = std::cos(degreesToRadians(driftAngle)) * DRIFT_INTENCITY;
+	drift.y = -std::abs(std::sin(degreesToRadians(driftAngle)) * DRIFT_INTENCITY);
+
+	velocity.x += drift.x;
+	velocity.y += drift.y;
 }

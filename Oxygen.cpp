@@ -6,11 +6,11 @@ Oxygen::Oxygen()
 	init();
 }
 
-void Oxygen::Render(sf::RenderWindow& t_window)
+void Oxygen::Render(sf::RenderTexture& t_renderTexture)
 {
-	 m_plant.Render(t_window);
 	t_window.draw(m_transparentOxygen);
 	t_window.draw(m_fillOxygen);
+	m_plant.Render(t_window);
 }
 
 void Oxygen::Update(float t_dt, sf::CircleShape t_player)

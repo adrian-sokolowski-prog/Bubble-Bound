@@ -8,6 +8,7 @@ public:
 	Player();
 
 	sf::CircleShape getBody() { return body; }
+	sf::Sprite getSprite() { return sprite; }
 
 	void move();
 
@@ -20,6 +21,10 @@ private:
 
 	sf::CircleShape body;
 	const float RADIUS = 30;
+
+	// Sprite / Texture
+	sf::Sprite sprite;
+	sf::Texture texture;
 
 	const float FRICTION = 0.98f;
 

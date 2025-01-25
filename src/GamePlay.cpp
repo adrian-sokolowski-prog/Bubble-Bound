@@ -12,7 +12,7 @@ void GamePlay::update(double t_deltaTime)
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
-	t_window.draw(player.getBody());
+	t_window.draw(player.getSprite());
 }
 
 void GamePlay::processEvents(sf::Event& t_event)

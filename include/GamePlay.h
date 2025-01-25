@@ -17,6 +17,8 @@ public:
 
 private:
 
+	void moveView();
+	sf::View view;
 
 	// Objects
 	Player player;

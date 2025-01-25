@@ -23,9 +23,11 @@
     <ClInclude Include="include\GamePlay.h" />
     <ClInclude Include="include\Globals.h" />
     <ClInclude Include="include\MainMenu.h" />
+    <ClInclude Include="Oxygen.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Oxygen.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GamePlay.cpp" />

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Oxygen.h"
 
 class GamePlay
 {
@@ -14,7 +15,9 @@ public:
 
 private:
 
-	Player player;
 
+	// Objects
+	Player player;
+	Oxygen m_oxygen;
 };
 

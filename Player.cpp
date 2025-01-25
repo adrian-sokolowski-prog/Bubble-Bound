@@ -60,8 +60,6 @@ void Player::applyFriction()
 
 void Player::movementDrift()
 {
-	
-
 	if (driftTimer < TIME_BETWEEN_DRIFT_CHANGE)
 	{
 		driftTimer++;

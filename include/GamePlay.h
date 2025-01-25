@@ -1,11 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Enemy.h"
 
 class GamePlay
 {
 public:
 	GamePlay();
+
+	void loadTextures();
 
 	void update(double t_deltaTime);
 	void render(sf::RenderWindow& t_window);
@@ -16,5 +19,11 @@ private:
 
 	Player player;
 
+	std::vector<Enemy> enemies;
+	sf::Texture enemyTexture;
+
+	// Enemy spawn timer
+	const int TIME_BETWEEN_SPAWNS = 2 * 60;
+	int spawnTimer = 0;
 };
 

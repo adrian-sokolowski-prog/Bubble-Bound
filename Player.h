@@ -10,6 +10,8 @@ public:
 	sf::CircleShape getBody() { return body; }
 	sf::Sprite getSprite() { return sprite; }
 
+	sf::Vector2f getPos() { return position; }
+
 	void move();
 
 private:

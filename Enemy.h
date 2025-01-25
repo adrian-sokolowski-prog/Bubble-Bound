@@ -25,6 +25,6 @@ private:
 
 	sf::Vector2f position;
 	sf::Vector2f velocity;
-	int speed = 5;
+	int speed = 7;
 };
 

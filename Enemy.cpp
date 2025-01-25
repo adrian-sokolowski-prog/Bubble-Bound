@@ -12,7 +12,7 @@ Enemy::Enemy()
 	position = { 200, 200 };
 	sprite.setPosition(position);
 	sprite.setOrigin(731, 721);
-	sprite.setScale(0.1, 0.1);
+	sprite.setScale(0.25, 0.25);
 }
 
 void Enemy::move()

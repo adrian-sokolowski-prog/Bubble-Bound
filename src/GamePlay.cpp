@@ -9,6 +9,8 @@ GamePlay::GamePlay()
 void GamePlay::update(double t_deltaTime)
 {
 	player.move();
+	sf::CircleShape shape;
+	m_oxygen.Update(t_deltaTime, player.getBody());
 
 	if (spawnTimer < TIME_BETWEEN_SPAWNS)
 	{
@@ -36,6 +38,7 @@ void GamePlay::update(double t_deltaTime)
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
+	m_oxygen.Render(t_window);
 	t_window.draw(player.getSprite());
 
 	for (Enemy& e : enemies)

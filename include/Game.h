@@ -1,11 +1,12 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <string>
 
 #include "GamePlay.h"
 #include "MainMenu.h"
-
+#include "Oxygen.h"
 enum class Scene
 {
 	None,
@@ -35,4 +36,6 @@ private:
 	sf::RenderWindow m_window;
 
 	static Scene currentScene;
+
+	
 };

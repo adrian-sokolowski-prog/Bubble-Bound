@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Oxygen.h"
 #include "Enemy.h"
 
 class GamePlay
@@ -16,7 +17,10 @@ public:
 
 private:
 
+
+	// Objects
 	Player player;
+	Oxygen m_oxygen;
 	
 	static const int MAX_ENEMIES = 10;
 	int enemyAmount = 0;

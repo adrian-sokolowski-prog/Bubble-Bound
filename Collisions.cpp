@@ -13,9 +13,16 @@ bool Collisions::CircleSpriteCollision(sf::CircleShape t_circle, sf::Sprite t_sp
     float deltaX = circleCenter.x - nearestX;
     float deltaY = circleCenter.y - nearestY;
 
-    if ((deltaX * deltaX + deltaY * deltaY) <= radius * radius)
-    {
-        collision = true;
-    }
-    return collision;
+
+    return (deltaX * deltaX + deltaY * deltaY) <= (radius * radius);
+}
+
+bool Collisions::RectangleCollision(sf::Sprite t_player, sf::Sprite t_otherSprite)
+{
+    // Get the global bounds of both sprites
+    sf::FloatRect playerBounds = t_player.getGlobalBounds();
+    sf::FloatRect otherBounds = t_otherSprite.getGlobalBounds();
+
+    // Check if the two bounding boxes intersect
+    return playerBounds.intersects(otherBounds);
 }

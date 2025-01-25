@@ -91,6 +91,7 @@ void Game::render()
 		break;
 	case Scene::GamePlay:
 		gameplay.render(m_window);
+		
 		break;
 	case Scene::MainMenu:
 		mainMenu.render(m_window);

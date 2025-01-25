@@ -3,11 +3,11 @@
 
 GamePlay::GamePlay()
 {
-	loadShader();
+	srand(time(nullptr));
 
-	circle.setRadius(50);
-	circle.setFillColor(sf::Color::Green);
-	circle.setPosition(100, 100);
+	view.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	view.setCenter(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
+	loadShader();
 
 	if (!renderTexture.create(SCREEN_WIDTH, SCREEN_HEIGHT))
 	{	
@@ -17,21 +17,61 @@ GamePlay::GamePlay()
 
 void GamePlay::update(double t_deltaTime)
 {
-	underWaterShader.setUniform("time", clock.getElapsedTime().asSeconds());
+	moveView();
+
+	player.move();
+	sf::CircleShape shape;
+	m_oxygen.Update(t_deltaTime, player.getBody());
+
+	if (spawnTimer < TIME_BETWEEN_SPAWNS)
+	{
+		spawnTimer++;
+	}
+	else
+	{
+		spawnTimer = 0;
+
+		for (int i = 0; i < MAX_ENEMIES; i++)
+		{
+			if (!enemies[i].active)
+			{
+				enemies[i].activate(player.getPos());
+				break;
+			}
+		}
+	}
+
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		enemies[i].move();
+	}
 }
 
-void GamePlay::render(sf::RenderWindow& t_window) 
+void GamePlay::render(sf::RenderWindow& t_window)
 {
 	renderTexture.clear();
 
-	renderTexture.draw(tileSprite);
-	renderTexture.draw(circle);
+	m_oxygen.Render(renderTexture);
+	
+	renderTexture.setView(view);
+
+	renderTexture.draw(player.getSprite());
+
+	for (Enemy& e : enemies)
+	{
+		if (e.active)
+		{
+			renderTexture.draw(e.getSprite());
+		}
+	}
 
 	renderTexture.display();
+	underWaterShader.setUniform("time", clock.getElapsedTime().asSeconds());
 
 	sf::Sprite screenSprite(renderTexture.getTexture());
 	t_window.draw(screenSprite, &underWaterShader);
 }
+
 
 void GamePlay::processEvents(sf::Event& t_event)
 {
@@ -64,4 +104,9 @@ void GamePlay::loadShader() // shader.setUniform("texture", sf::Shader::CurrentT
 	tileSprite.setTexture(tiles);
 	tileSprite.setTextureRect(sf::IntRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
 
+}
+
+void GamePlay::moveView()
+{
+	view.setCenter(SCREEN_WIDTH / 2.0f, player.getPos().y - 200);
 }

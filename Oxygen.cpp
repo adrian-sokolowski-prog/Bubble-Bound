@@ -8,9 +8,9 @@ Oxygen::Oxygen()
 
 void Oxygen::Render(sf::RenderTexture& t_renderTexture)
 {
-	t_window.draw(m_transparentOxygen);
-	t_window.draw(m_fillOxygen);
-	m_plant.Render(t_window);
+	t_renderTexture.draw(m_transparentOxygen);
+	t_renderTexture.draw(m_fillOxygen);
+	m_plant.Render(t_renderTexture);
 }
 
 void Oxygen::Update(float t_dt, sf::CircleShape t_player)

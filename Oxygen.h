@@ -10,8 +10,8 @@ public:
 	Oxygen();
 	void Render(sf::RenderTexture& t_renderTexture);
 	void Update(float t_dt, sf::CircleShape t_player);
-
-
+	void MoveOxygenUI(sf::Vector2f t_viewCenter);
+	void TakeDMG(int t_damage);
 private:
 
 	sf::RectangleShape m_transparentOxygen;
@@ -21,7 +21,7 @@ private:
 	
 	float m_timeBetweenUpdate = 0;
 	sf::Vector2f m_oxygenPos{ 100,200 };
-
+	sf::Vector2f m_barPositionOffset{ -570,-350 };
 	sf::Texture m_oxygenPlantTexture;
 
 	OxygenPlant m_plant;

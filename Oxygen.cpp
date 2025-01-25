@@ -27,10 +27,23 @@ void Oxygen::Update(float t_dt, sf::CircleShape t_player)
 	}
 	if (m_collision.CircleSpriteCollision(t_player, m_plant.GetPlant()))
 	{
-		size.x++;
-
+		if(size.x < 200)
+			size.x++;
 	}
 
+	m_fillOxygen.setSize(size);
+}
+
+void Oxygen::MoveOxygenUI(sf::Vector2f t_viewCenter)
+{
+	m_fillOxygen.setPosition(t_viewCenter + m_barPositionOffset);
+	m_transparentOxygen.setPosition(t_viewCenter + m_barPositionOffset);
+}
+
+void Oxygen::TakeDMG(int t_damage)
+{
+	sf::Vector2f size = m_fillOxygen.getSize();
+	size.x = size.x - t_damage;
 	m_fillOxygen.setSize(size);
 }
 

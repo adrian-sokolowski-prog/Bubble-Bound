@@ -7,7 +7,9 @@ OxygenPlant::OxygenPlant()
 	{
 		std::cout << "issue loading plant" << std::endl;
 	}
+	
 	m_oxygenPlant.setTexture(m_plantTexture);
+	m_oxygenPlant.setScale(0.05, 0.05);
 }
 
 void OxygenPlant::Render(sf::RenderTexture& t_renderTexture)

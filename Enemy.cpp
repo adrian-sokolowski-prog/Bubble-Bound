@@ -3,7 +3,7 @@
 
 Enemy::Enemy()
 {
-	if (!texture.loadFromFile("Assets/Art/enemy.png"))
+	if (!texture.loadFromFile("Assets/Art/Shark.png"))
 	{
 		std::cout << "Couldnt load enemy texture \n";
 	}

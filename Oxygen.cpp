@@ -1,4 +1,5 @@
 #include "Oxygen.h"
+#include <iostream>
 
 Oxygen::Oxygen()
 {
@@ -9,9 +10,10 @@ void Oxygen::Render(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_transparentOxygen);
 	t_window.draw(m_fillOxygen);
+	m_plant.Render(t_window);
 }
 
-void Oxygen::Update(float t_dt)
+void Oxygen::Update(float t_dt, sf::CircleShape t_player)
 {
 	m_timeBetweenUpdate += t_dt;
 	if (m_timeBetweenUpdate > 500)
@@ -36,4 +38,9 @@ void Oxygen::init()
 	m_fillOxygen.setFillColor(sf::Color::Red);
 	m_fillOxygen.setSize(sf::Vector2f{ 200,50 });
 	m_fillOxygen.setPosition(m_oxygenPos);
+
+	if (!m_oxygenPlantTexture.loadFromFile("Assets/Art/OxygenPlant.png"))
+	{
+		std::cout << "issue loading plant" << std::endl;
+	}
 }

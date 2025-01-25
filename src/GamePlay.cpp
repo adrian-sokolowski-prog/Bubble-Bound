@@ -8,13 +8,14 @@ GamePlay::GamePlay()
 void GamePlay::update(double t_deltaTime)
 {
 	player.move();
-	m_oxygen.Update(t_deltaTime);
+	sf::CircleShape shape;
+	m_oxygen.Update(t_deltaTime, shape);
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
-	t_window.draw(player.getSprite());
 	m_oxygen.Render(t_window);
+	t_window.draw(player.getSprite());
 }
 
 void GamePlay::processEvents(sf::Event& t_event)

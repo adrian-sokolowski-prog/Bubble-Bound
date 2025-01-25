@@ -11,7 +11,7 @@ public:
 	sf::Vector2f getPos() { return position; }
 	void move();
 
-	void activate(sf::Vector2f t_targetPos);
+	void activate(sf::Vector2f t_targetPos, float t_viewCenter);
 
 
 	bool active = false;
@@ -25,6 +25,6 @@ private:
 
 	sf::Vector2f position;
 	sf::Vector2f velocity;
-	int speed = 5;
+	int speed = 7;
 };
 

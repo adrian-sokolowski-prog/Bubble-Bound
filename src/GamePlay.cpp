@@ -1,6 +1,8 @@
 #include "GamePlay.h"
 #include "Globals.h"
 
+#include "Game.h"
+
 GamePlay::GamePlay()
 {
 	srand(time(nullptr));
@@ -17,13 +19,13 @@ GamePlay::GamePlay()
 
 void GamePlay::update(double t_deltaTime)
 {
+	if(m_oxygen.isDead()) Game::currentScene = Scene::MainMenu;
 	moveView();
-
-
+	
 	player.move();
 	sf::CircleShape shape;
 	m_oxygen.Update(t_deltaTime, player.getBody());
-
+	m_oxygen.ChangePosition(player.getPos(), view);
 	if (spawnTimer < TIME_BETWEEN_SPAWNS)
 	{
 		spawnTimer++;
@@ -43,7 +45,7 @@ void GamePlay::update(double t_deltaTime)
 			
 		}
 	}
-	m_oxygen.ChangePosition(player.getPos(), view);
+	
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
 		enemies[i].move();
@@ -53,6 +55,7 @@ void GamePlay::update(double t_deltaTime)
 			std::cout << "Damage" << std::endl;
 			enemies[i].m_collied = true;
 			m_oxygen.TakeDMG(20);
+			
 		}
 	}
 }
@@ -60,13 +63,12 @@ void GamePlay::update(double t_deltaTime)
 void GamePlay::render(sf::RenderWindow& t_window)
 {
 	renderTexture.clear();
-	renderTexture.draw(player.getBody());
 	m_oxygen.Render(renderTexture);
 	
 	renderTexture.setView(view);
 
 	renderTexture.draw(player.getSprite());
-
+	
 	for (Enemy& e : enemies)
 	{
 		if (e.active)

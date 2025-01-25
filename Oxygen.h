@@ -14,6 +14,7 @@ public:
 	void MoveOxygenUI(sf::Vector2f t_viewCenter);
 	void TakeDMG(int t_damage);
 	void ChangePosition(sf::Vector2f t_playerPosition, sf::View t_viewPort);
+	bool isDead();
 private:
 
 	sf::RectangleShape m_transparentOxygen;

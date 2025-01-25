@@ -27,6 +27,7 @@
 /// <returns></returns>
 int main(int, char* argv[])
 {
+	std::srand(static_cast<unsigned int>(std::time(0)));
 	Game game;
 	game.run();
 }

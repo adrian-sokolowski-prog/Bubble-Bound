@@ -9,7 +9,7 @@ class GamePlay
 {
 public:
 	GamePlay();
-
+	
 	
 	void update(double t_deltaTime);
 	void render(sf::RenderWindow& t_window);
@@ -43,7 +43,6 @@ private:
 	// Enemy spawn timer
 	const int TIME_BETWEEN_SPAWNS = 2 * 60;
 	int spawnTimer = 0;
-
 	Collisions m_collision;
 };
 

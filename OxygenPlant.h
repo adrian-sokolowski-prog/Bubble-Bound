@@ -8,7 +8,7 @@ public:
 
 	void Render(sf::RenderWindow& t_window);
 	void Update(float t_dt);
-	sf::Vector2f GetPlantPos();
+	sf::Sprite& GetPlant();
 private:
 	sf::Sprite m_oxygenPlant;
 	sf::Texture m_plantTexture;

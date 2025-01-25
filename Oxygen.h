@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include <OxygenPlant.h>
+#include <Collisions.h>
 
 class Oxygen
 {
@@ -24,4 +25,5 @@ private:
 	sf::Texture m_oxygenPlantTexture;
 
 	OxygenPlant m_plant;
+	Collisions m_collision;
 };

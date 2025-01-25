@@ -9,7 +9,7 @@ void GamePlay::update(double t_deltaTime)
 {
 	player.move();
 	sf::CircleShape shape;
-	m_oxygen.Update(t_deltaTime, shape);
+	m_oxygen.Update(t_deltaTime, player.getBody());
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)

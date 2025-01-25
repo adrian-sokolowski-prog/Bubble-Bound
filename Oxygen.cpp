@@ -16,16 +16,22 @@ void Oxygen::Render(sf::RenderWindow& t_window)
 void Oxygen::Update(float t_dt, sf::CircleShape t_player)
 {
 	m_timeBetweenUpdate += t_dt;
+	sf::Vector2f size = m_fillOxygen.getSize();
 	if (m_timeBetweenUpdate > 500)
 	{
-		sf::Vector2f size = m_fillOxygen.getSize();
 		if (size.x > 0)
 		{
 			size.x--;
-			m_fillOxygen.setSize(size);
 		}
 		m_timeBetweenUpdate = 0;
 	}
+	if (m_collision.CircleSpriteCollision(t_player, m_plant.GetPlant()))
+	{
+		size.x++;
+
+	}
+
+	m_fillOxygen.setSize(size);
 }
 
 void Oxygen::init()

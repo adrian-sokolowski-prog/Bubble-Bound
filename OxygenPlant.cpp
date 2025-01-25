@@ -19,7 +19,7 @@ void OxygenPlant::Update(float t_dt)
 {
 }
 
-sf::Vector2f OxygenPlant::GetPlantPos()
+sf::Sprite& OxygenPlant::GetPlant()
 {
-	return m_oxygenPlant.getPosition();
+	return m_oxygenPlant;
 }

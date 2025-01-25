@@ -6,10 +6,9 @@ class Enemy
 {
 public:
 	Enemy();
-
-	sf::Sprite getSprite() { return sprite; }
+	bool m_collied = false;
+	sf::Sprite& getSprite() { return sprite; }
 	sf::Vector2f getPos() { return position; }
-
 	void move();
 
 	void activate(sf::Vector2f t_targetPos);

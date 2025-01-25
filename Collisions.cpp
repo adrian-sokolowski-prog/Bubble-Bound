@@ -2,9 +2,8 @@
 
 bool Collisions::CircleSpriteCollision(sf::CircleShape t_circle, sf::Sprite t_sprite)
 {
-    bool collision = false;
     float radius = t_circle.getRadius();
-    sf::Vector2f circleCenter = t_circle.getPosition() + sf::Vector2f(radius, radius);
+    sf::Vector2f circleCenter = t_circle.getPosition();
     sf::FloatRect spriteBounds = t_sprite.getGlobalBounds();
 
     float nearestX = std::max(spriteBounds.left, std::min(circleCenter.x, spriteBounds.left + spriteBounds.width));

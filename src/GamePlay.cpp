@@ -35,22 +35,31 @@ void GamePlay::update(double t_deltaTime)
 		{
 			if (!enemies[i].active)
 			{
+
 				enemies[i].activate(player.getPos());
 				break;
 			}
+			
 		}
 	}
 
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
 		enemies[i].move();
+
+		if (m_collision.CircleSpriteCollision(player.getBody(), enemies[i].getSprite()) && !enemies[i].m_collied && enemies[i].active)
+		{
+			std::cout << "Damage" << std::endl;
+			enemies[i].m_collied = true;
+			m_oxygen.TakeDMG(20);
+		}
 	}
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
 	renderTexture.clear();
-
+	renderTexture.draw(player.getBody());
 	m_oxygen.Render(renderTexture);
 	
 	renderTexture.setView(view);

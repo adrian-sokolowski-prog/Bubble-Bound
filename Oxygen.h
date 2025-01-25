@@ -11,7 +11,7 @@ public:
 	void Render(sf::RenderTexture& t_renderTexture);
 	void Update(float t_dt, sf::CircleShape t_player);
 	void MoveOxygenUI(sf::Vector2f t_viewCenter);
-
+	void TakeDMG(int t_damage);
 private:
 
 	sf::RectangleShape m_transparentOxygen;

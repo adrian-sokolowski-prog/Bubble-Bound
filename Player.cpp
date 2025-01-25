@@ -60,6 +60,7 @@ void Player::movementDrift()
 	{
 		int randChange = (rand() % 30) - 10;
 		driftAngle += randChange;
+
 		driftTimer = 0;
 	}
 

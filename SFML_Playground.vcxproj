@@ -25,12 +25,14 @@
     <ClInclude Include="include\GamePlay.h" />
     <ClInclude Include="include\Globals.h" />
     <ClInclude Include="include\MainMenu.h" />
+    <ClInclude Include="Mine.h" />
     <ClInclude Include="Oxygen.h" />
     <ClInclude Include="OxygenPlant.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Collisions.cpp" />
+    <ClCompile Include="Mine.cpp" />
     <ClCompile Include="Oxygen.cpp" />
     <ClCompile Include="OxygenPlant.cpp" />
     <ClCompile Include="Enemy.cpp" />

@@ -69,6 +69,11 @@ void GamePlay::update(double t_deltaTime)
 			
 		}
 	}
+	if (m_collision.CircleSpriteCollision(player.getBody(), m_mine.GetSprite()))
+	{
+		m_oxygen.TakeDMG(50);
+	}
+	m_mine.Update(t_deltaTime);
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
@@ -76,7 +81,6 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	renderTexture.clear();
 
 	renderTexture.draw(backgroundSprite, &brightnessShader);
-
 	renderTexture.draw(player.getBody());
 	m_oxygen.Render(renderTexture);
 	
@@ -97,6 +101,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	sf::Sprite screenSprite(renderTexture.getTexture());
 	t_window.draw(screenSprite, &underWaterShader);
+	m_mine.Render(t_window);
 }
 
 

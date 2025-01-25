@@ -4,7 +4,7 @@
 #include "Oxygen.h"
 #include "Enemy.h"
 #include <iostream>
-
+#include "Mine.h"
 class GamePlay
 {
 public:
@@ -35,7 +35,7 @@ private:
 	// Objects
 	Player player;
 	Oxygen m_oxygen;
-	
+	Mine m_mine;
 	static const int MAX_ENEMIES = 10;
 	int enemyAmount = 0;
 	Enemy enemies[MAX_ENEMIES];

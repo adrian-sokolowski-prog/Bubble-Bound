@@ -19,4 +19,7 @@ private:
 	void init();
 	sf::Sprite m_mine;
 	sf::Texture m_mineTexture;
+	sf::Texture m_crateTexture;
+
+	void randomizeTexture();
 };

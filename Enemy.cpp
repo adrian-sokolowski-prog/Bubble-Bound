@@ -3,12 +3,15 @@
 
 Enemy::Enemy()
 {
-	if (!texture.loadFromFile("Assets/Art/Shark.png"))
+	if (!sharkTexture.loadFromFile("Assets/Art/Shark.png"))
+	{
+		std::cout << "Couldnt load enemy texture \n";
+	}
+	if (!piranhaTexture.loadFromFile("Assets/Art/piranha.png"))
 	{
 		std::cout << "Couldnt load enemy texture \n";
 	}
 	// Sprite
-	sprite.setTexture(texture);
 	position = { 200, 200 };
 	sprite.setPosition(position);
 	sprite.setOrigin(731, 721);
@@ -32,6 +35,16 @@ void Enemy::move()
 
 void Enemy::activate(sf::Vector2f t_targetPos, float t_viewCenter)
 {
+	int randTexture = rand() % 2;
+	if (randTexture == 0)
+	{
+		sprite.setTexture(sharkTexture);
+	}
+	else
+	{
+		sprite.setTexture(piranhaTexture);
+	}
+
 	// Set position
 	int randChange = (rand() % 400) - 200;
 	position.x = t_targetPos.x  + randChange;

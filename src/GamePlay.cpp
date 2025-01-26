@@ -137,8 +137,8 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	renderTexture.draw(backgroundSprite, &brightnessShader);
 	renderTexture.draw(skySprite);
 	renderTexture.draw(endSprite);
-
-	renderTexture.draw(player.getBody());
+	renderTexture.draw(player.getPlayerSprite());
+	//renderTexture.draw(player.getBody());
 	if (!endScreen)
 	{
 		m_oxygen.Render(renderTexture);

@@ -39,11 +39,21 @@ sf::Sprite& Mine::GetSprite()
 
 void Mine::SpawnMine(sf::View t_port)
 {
+	int randTexture = rand() % 2;
+	if (randTexture == 0)
+	{
+		m_mine.setTexture(m_mineTexture);
+	}
+	else
+	{
+		m_mine.setTexture(m_crateTexture);
+	}
+
 	float viewTop = t_port.getCenter().y - (t_port.getSize().y / 2.0f);
 	float viewLeft = t_port.getCenter().x - (t_port.getSize().x / 2.0f);
 	float viewRight = viewLeft + t_port.getSize().x;
 	float randomX = viewLeft + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX) / (viewRight - viewLeft));
-	m_mine.setPosition(randomX, viewTop - 50);
+	m_mine.setPosition(randomX, viewTop - 100);
 }
 
 void Mine::ChangePosition(sf::Vector2f t_playerPosition, sf::View t_viewPort)
@@ -63,7 +73,7 @@ void Mine::ChangePosition(sf::Vector2f t_playerPosition, sf::View t_viewPort)
 		float randomX = viewLeft + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX) / (viewRight - viewLeft));
 
 		// Set the plant's position with the random x position and fixed y position
-		m_mine.setPosition(randomX, viewTop - 50);
+		m_mine.setPosition(randomX, viewTop - 100);
 	}
 }
 
@@ -73,6 +83,10 @@ void Mine::init()
 	{
 		std::cout << "mine not loaded" << std::endl;
 	}
-	m_mine.setTexture(m_mineTexture);
+	if (!m_crateTexture.loadFromFile("Assets/Art/crate.png"))
+	{
+		std::cout << "crate not loaded" << std::endl;
+	}
+
 	m_mine.setScale(0.05, 0.05);
 }

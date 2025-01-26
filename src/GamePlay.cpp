@@ -1,6 +1,8 @@
 #include "GamePlay.h"
 #include "Globals.h"
 
+#include "Game.h"
+
 GamePlay::GamePlay()
 {
 	srand(time(nullptr));
@@ -13,16 +15,33 @@ GamePlay::GamePlay()
 	{	
 		std::cout << "Couldnt create texture\n";
 	}
+
+	if (!backgroundTexture.loadFromFile("Assets/Art/background.png"))
+	{
+		std::cout << "couldnt load background";
+	}
+	backgroundTexture.setRepeated(true);
+	backgroundSprite.setTexture(backgroundTexture);
+	backgroundSprite.setPosition(0.0f, -40000 + SCREEN_HEIGHT);
+	backgroundSprite.setTextureRect(sf::IntRect(0,0, 1200, 40000));
 }
 
 void GamePlay::update(double t_deltaTime)
 {
+	if (m_oxygen.isDead())
+	{
+		Game::currentScene = Scene::MainMenu;
+		m_oxygen.reset();
+	}
 	moveView();
+	brightnessShader.setUniform("height", std::abs(player.getPos().y));
+
 
 	player.move();
+
 	sf::CircleShape shape;
 	m_oxygen.Update(t_deltaTime, player.getBody());
-
+	m_oxygen.ChangePosition(player.getPos(), view);
 	if (spawnTimer < TIME_BETWEEN_SPAWNS)
 	{
 		spawnTimer++;
@@ -35,14 +54,13 @@ void GamePlay::update(double t_deltaTime)
 		{
 			if (!enemies[i].active)
 			{
-
-				enemies[i].activate(player.getPos());
+				enemies[i].activate(player.getPos(), view.getCenter().y);
 				break;
 			}
 			
 		}
 	}
-
+	
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
 		enemies[i].move();
@@ -52,20 +70,28 @@ void GamePlay::update(double t_deltaTime)
 			std::cout << "Damage" << std::endl;
 			enemies[i].m_collied = true;
 			m_oxygen.TakeDMG(20);
+			
 		}
 	}
+	if (m_collision.CircleSpriteCollision(player.getBody(), m_mine.GetSprite()))
+	{
+		m_oxygen.TakeDMG(50);
+	}
+	m_mine.Update(t_deltaTime);
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
 	renderTexture.clear();
+
+	renderTexture.draw(backgroundSprite, &brightnessShader);
 	renderTexture.draw(player.getBody());
 	m_oxygen.Render(renderTexture);
 	
 	renderTexture.setView(view);
 
 	renderTexture.draw(player.getSprite());
-
+	
 	for (Enemy& e : enemies)
 	{
 		if (e.active)
@@ -79,6 +105,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	sf::Sprite screenSprite(renderTexture.getTexture());
 	t_window.draw(screenSprite, &underWaterShader);
+	m_mine.Render(t_window);
 }
 
 
@@ -104,15 +131,10 @@ void GamePlay::loadShader() // shader.setUniform("texture", sf::Shader::CurrentT
 	noiseTexture.setSmooth(true);
 	underWaterShader.setUniform("noiseTexture", noiseTexture);
 
-
-	if (!tiles.loadFromFile("Assets/Shaders/tiles.jpg"))
+	if (!brightnessShader.loadFromFile("Assets/Shaders/DarkToBright.frag", sf::Shader::Fragment))
 	{
-		std::cout << "Couldnt load tiles texture\n";
+		std::cout << "COULDN'T LOAD DARK-TO-BRIGHT SHADER \n";
 	}
-	tiles.setRepeated(true);
-	tileSprite.setTexture(tiles);
-	tileSprite.setTextureRect(sf::IntRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
-
 }
 
 void GamePlay::moveView()

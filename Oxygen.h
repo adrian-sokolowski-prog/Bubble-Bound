@@ -2,7 +2,8 @@
 #include "SFML/Graphics.hpp"
 #include <OxygenPlant.h>
 #include <Collisions.h>
-
+#include <cstdlib>  // for rand()
+#include <ctime>    // for time()
 class Oxygen
 {
 
@@ -12,6 +13,10 @@ public:
 	void Update(float t_dt, sf::CircleShape t_player);
 	void MoveOxygenUI(sf::Vector2f t_viewCenter);
 	void TakeDMG(int t_damage);
+	void ChangePosition(sf::Vector2f t_playerPosition, sf::View t_viewPort);
+	bool isDead();
+
+	void reset() { m_fillOxygen.setSize({200, 50}); }
 private:
 
 	sf::RectangleShape m_transparentOxygen;

@@ -21,6 +21,7 @@ public:
 	Game();
 
 	void run();
+	static Scene currentScene;
 
 private:
 
@@ -28,6 +29,7 @@ private:
 	void render();
 	void processEvents();
 
+	bool m_gameLost = false;
 	// Scenes
 	GamePlay gameplay;
 	MainMenu mainMenu;
@@ -35,7 +37,6 @@ private:
 	// main window
 	sf::RenderWindow m_window;
 
-	static Scene currentScene;
 
 	
 };

@@ -24,6 +24,7 @@ void Button::setupButton(sf::Vector2f t_pos, sf::Sprite t_sprite)
 
 	position = t_pos;
 	body.setPosition(position);
+	sprite.setPosition(position);
 }
 
 bool Button::checkForMouse(sf::Vector2f t_mousePos)
@@ -62,7 +63,7 @@ void Button::hovering()
 		body.setSize({ size, size });
 		body.setOrigin(size / 2, size / 2);
 
-		scale += 0.01f;
+		scale += 0.005f;
 		sprite.setScale(scale, scale);
 	}
 }
@@ -79,7 +80,7 @@ void Button::notHovering()
 		body.setSize({ size, size });
 		body.setOrigin(size / 2, size / 2);
 
-		scale -= 0.01f;
+		scale -= 0.005f;
 		sprite.setScale(scale, scale);
 	}
 }

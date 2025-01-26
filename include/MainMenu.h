@@ -26,11 +26,8 @@ private:
 	Button playButton;
 	Button quitButton;
 
-	sf::RectangleShape playButtonHitbox;
 	sf::Texture playTexture;
 	sf::Sprite playSprite;
-
-	sf::RectangleShape quitButtonHitbox;
 	sf::Texture quitTexture;
 	sf::Sprite quitSprite;
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
+#include <SFML/Audio/Music.hpp>
 #include "Button.h"
 
 class MainMenu
@@ -30,6 +30,5 @@ private:
 	sf::Sprite playSprite;
 	sf::Texture quitTexture;
 	sf::Sprite quitSprite;
-
 };
 

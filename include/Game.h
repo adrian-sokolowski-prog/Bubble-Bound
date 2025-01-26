@@ -23,6 +23,10 @@ public:
 	void run();
 	static Scene currentScene;
 
+	static sf::Music gameMusic;
+	static sf::Music menuMusic;
+	static sf::Music endMusic;
+
 private:
 
 	void update(double t_deltaTime);

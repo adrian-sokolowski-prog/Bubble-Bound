@@ -30,6 +30,8 @@ MainMenu::MainMenu()
 
 	playButton.setupButton({ 200, 200 }, playSprite);
 	quitButton.setupButton({ SCREEN_WIDTH - 205, SCREEN_HEIGHT - 175 }, quitSprite);
+
+
 }
 
 void MainMenu::update(double t_deltaTime)
@@ -68,6 +70,8 @@ void MainMenu::processMouseDown(sf::Event& t_event, sf::RenderWindow& t_window)
 	if (playButton.colliding)
 	{
 		std::cout << "SWAP \n";
+		Game::menuMusic.pause();
+		Game::gameMusic.play();
 		Game::currentScene = Scene::GamePlay;
 	}
 	else if (quitButton.colliding)

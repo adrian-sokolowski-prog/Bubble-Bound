@@ -44,6 +44,11 @@ GamePlay::GamePlay()
 
 void GamePlay::update(double t_deltaTime)
 {
+	if (!endScreen && view.getCenter().y < -38500)
+	{
+		endScreen = true;
+	}
+
 	if (m_oxygen.isDead())
 	{
 		Game::gameMusic.pause();
@@ -72,14 +77,16 @@ void GamePlay::update(double t_deltaTime)
 	{
 		spawnTimer = 0;
 
-		for (int i = 0; i < MAX_ENEMIES; i++)
+		if (!endScreen)
 		{
-			if (!enemies[i].active)
+			for (int i = 0; i < MAX_ENEMIES; i++)
 			{
-				enemies[i].activate(player.getPos(), view.getCenter().y);
-				break;
+				if (!enemies[i].active)
+				{
+					enemies[i].activate(player.getPos(), view.getCenter().y);
+					break;
+				}
 			}
-			
 		}
 	}
 	
@@ -95,8 +102,12 @@ void GamePlay::update(double t_deltaTime)
 			
 		}
 	}
-	m_mine.ChangePosition(player.getPos(), view);
-	m_mine.Update(t_deltaTime,view);
+
+	if (!endScreen)
+	{
+		m_mine.ChangePosition(player.getPos(), view);
+		m_mine.Update(t_deltaTime, view);
+	}
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
@@ -109,7 +120,10 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	renderTexture.draw(endSprite);
 
 	renderTexture.draw(player.getBody());
-	m_oxygen.Render(renderTexture);
+	if (!endScreen)
+	{
+		m_oxygen.Render(renderTexture);
+	}
 	
 	renderTexture.setView(view);
 

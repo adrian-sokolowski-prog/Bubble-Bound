@@ -50,5 +50,7 @@ private:
 	const int TIME_BETWEEN_SPAWNS = 2 * 60;
 	int spawnTimer = 0;
 	Collisions m_collision;
+
+	bool endScreen = false;
 };
 

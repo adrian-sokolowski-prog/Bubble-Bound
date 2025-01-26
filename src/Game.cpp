@@ -26,7 +26,7 @@ Game::Game()
 	}
 
 	// Change some parameters
-	Game::gameMusic.setVolume(50);         // reduce the volume
+	Game::gameMusic.setVolume(100);         // reduce the volume
 	Game::gameMusic.setLoop(true);         // make it loop
 
 	if (!Game::menuMusic.openFromFile("Assets/Music/MainMenuTheme.mp3"))
@@ -34,7 +34,7 @@ Game::Game()
 		std::cout << "Promblem loading main menu theme" << std::endl;
 	}
 
-	Game::menuMusic.setVolume(50);         // reduce the volume
+	Game::menuMusic.setVolume(100);         // reduce the volume
 	Game::menuMusic.setLoop(true);
 	Game::menuMusic.play();
 }

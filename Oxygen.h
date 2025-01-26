@@ -15,6 +15,8 @@ public:
 	void TakeDMG(int t_damage);
 	void ChangePosition(sf::Vector2f t_playerPosition, sf::View t_viewPort);
 	bool isDead();
+
+	void reset() { m_fillOxygen.setSize({200, 50}); }
 private:
 
 	sf::RectangleShape m_transparentOxygen;

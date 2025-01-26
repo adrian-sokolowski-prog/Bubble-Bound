@@ -19,7 +19,6 @@ MainMenu::MainMenu()
 	quitSprite.setTexture(quitTexture);
 	quitSprite.setOrigin(800, 1000);
 	quitSprite.setScale(0.25, 0.25);
-	//quitSprite.setPosition(SCREEN_WIDTH - 150, SCREEN_HEIGHT - 150);
 
 	if (!playTexture.loadFromFile("Assets/Art/PlayButton.png"))
 	{
@@ -28,7 +27,6 @@ MainMenu::MainMenu()
 	playSprite.setTexture(playTexture);
 	playSprite.setOrigin(800, 1000);
 	playSprite.setScale(0.35, 0.35);
-	//playSprite.setPosition(200, 200);
 
 	playButton.setupButton({ 200, 200 }, playSprite);
 	quitButton.setupButton({ SCREEN_WIDTH - 205, SCREEN_HEIGHT - 175 }, quitSprite);
@@ -70,7 +68,6 @@ void MainMenu::processMouseDown(sf::Event& t_event, sf::RenderWindow& t_window)
 	if (playButton.colliding)
 	{
 		std::cout << "SWAP \n";
-		playButton.colliding = false;
 		Game::currentScene = Scene::GamePlay;
 	}
 	else if (quitButton.colliding)

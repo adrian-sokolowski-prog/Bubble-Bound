@@ -28,7 +28,11 @@ GamePlay::GamePlay()
 
 void GamePlay::update(double t_deltaTime)
 {
-	if(m_oxygen.isDead()) Game::currentScene = Scene::MainMenu;
+	if (m_oxygen.isDead())
+	{
+		Game::currentScene = Scene::MainMenu;
+		m_oxygen.reset();
+	}
 	moveView();
 	brightnessShader.setUniform("height", std::abs(player.getPos().y));
 

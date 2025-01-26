@@ -30,6 +30,8 @@ void GamePlay::update(double t_deltaTime)
 {
 	if (m_oxygen.isDead())
 	{
+		Game::gameMusic.pause();
+		Game::menuMusic.play();
 		Game::currentScene = Scene::MainMenu;
 		m_oxygen.reset();
 	}

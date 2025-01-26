@@ -43,6 +43,11 @@ void Player::edgeCollision()
 	{
 		position.x = RADIUS;
 	}
+
+	if (position.y < -38100 - SCREEN_HEIGHT)
+	{
+		position.y = -38100 - SCREEN_HEIGHT;
+	}
 }
 
 void Player::checkDirection()

@@ -21,6 +21,12 @@ private:
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
 
+	sf::Texture skyTexture;
+	sf::Sprite skySprite;
+
+	sf::Texture endTexture;
+	sf::Sprite endSprite;
+
 	// Shader
 	sf::Clock clock;
 	sf::Texture noiseTexture;

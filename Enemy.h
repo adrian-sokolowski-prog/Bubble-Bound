@@ -19,7 +19,8 @@ public:
 private:
 
 	sf::Sprite sprite;
-	sf::Texture texture;
+	sf::Texture sharkTexture;
+	sf::Texture piranhaTexture;
 
 	const int RADIUS = 30;
 

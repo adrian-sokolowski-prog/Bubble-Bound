@@ -18,15 +18,16 @@ public:
 
 	void reset() { m_fillOxygen.setSize({200, 50}); }
 private:
-
-	sf::RectangleShape m_transparentOxygen;
+	sf::Sprite m_oxygenBar;
+	sf::Texture m_oxygenBarTexture;
 	sf::RectangleShape m_fillOxygen;
 
 	void init();
 	
 	float m_timeBetweenUpdate = 0;
 	sf::Vector2f m_oxygenPos{ 100,200 };
-	sf::Vector2f m_barPositionOffset{ -570,-350 };
+	sf::Vector2f m_barPositionOffset{ -500,-350 };
+	float maxHP = 330;
 	sf::Texture m_oxygenPlantTexture;
 
 	OxygenPlant m_plant;

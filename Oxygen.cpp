@@ -9,7 +9,7 @@ Oxygen::Oxygen()
 void Oxygen::Render(sf::RenderTexture& t_renderTexture)
 {
 	m_plant.Render(t_renderTexture);
-	t_renderTexture.draw(m_transparentOxygen);
+	t_renderTexture.draw(m_oxygenBar);
 	t_renderTexture.draw(m_fillOxygen);
 }
 
@@ -27,7 +27,7 @@ void Oxygen::Update(float t_dt, sf::CircleShape t_player)
 	}
 	if (m_collision.CircleSpriteCollision(t_player, m_plant.GetPlant()))
 	{
-		if(size.x < 200)
+		if(size.x < maxHP)
 			size.x++;
 	}
 
@@ -37,7 +37,7 @@ void Oxygen::Update(float t_dt, sf::CircleShape t_player)
 void Oxygen::MoveOxygenUI(sf::Vector2f t_viewCenter)
 {
 	m_fillOxygen.setPosition(t_viewCenter + m_barPositionOffset);
-	m_transparentOxygen.setPosition(t_viewCenter + m_barPositionOffset);
+	m_oxygenBar.setPosition(t_viewCenter + (m_barPositionOffset+ sf::Vector2f{-50,-78}));
 }
 
 void Oxygen::TakeDMG(int t_damage)
@@ -79,13 +79,15 @@ bool Oxygen::isDead()
 
 void Oxygen::init()
 {
-	m_transparentOxygen.setOutlineColor(sf::Color::Red);
-	m_transparentOxygen.setOutlineThickness(4.0f);
-	m_transparentOxygen.setSize(sf::Vector2f{ 200,50 });
-	m_transparentOxygen.setPosition(m_oxygenPos);
+	if (!m_oxygenBarTexture.loadFromFile("Assets/Art/OxygenBackground.png")) 
+		std::cout << "issue loading texture" << std::endl;
 
-	m_fillOxygen.setFillColor(sf::Color::Red);
-	m_fillOxygen.setSize(sf::Vector2f{ 200,50 });
+	m_oxygenBar.setTexture(m_oxygenBarTexture);
+	m_oxygenBar.setPosition(m_oxygenPos);
+	m_oxygenBar.setScale(0.2, 0.2);
+
+	m_fillOxygen.setFillColor(sf::Color::Blue);
+	m_fillOxygen.setSize(sf::Vector2f{ maxHP,35 });
 	m_fillOxygen.setPosition(m_oxygenPos);
 
 	if (!m_oxygenPlantTexture.loadFromFile("Assets/Art/OxygenPlant.png"))

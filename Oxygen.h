@@ -21,7 +21,8 @@ private:
 	sf::Sprite m_oxygenBar;
 	sf::Texture m_oxygenBarTexture;
 	sf::RectangleShape m_fillOxygen;
-
+	sf::Sprite m_platform;
+	sf::Texture m_platformTexture;
 	void init();
 	
 	float m_timeBetweenUpdate = 0;

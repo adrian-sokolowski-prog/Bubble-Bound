@@ -24,10 +24,31 @@ GamePlay::GamePlay()
 	backgroundSprite.setTexture(backgroundTexture);
 	backgroundSprite.setPosition(0.0f, -40000 + SCREEN_HEIGHT);
 	backgroundSprite.setTextureRect(sf::IntRect(0,0, 1200, 40000));
+
+	if (!skyTexture.loadFromFile("Assets/Art/sky.png"))
+	{
+		std::cout << "couldnt load sky";
+	}
+	skySprite.setTexture(skyTexture);
+	skySprite.setPosition(0.0f, -40000 + SCREEN_HEIGHT);
+
+	if (!endTexture.loadFromFile("Assets/Art/endBubble.png"))
+	{
+		std::cout << "couldnt load end bubble";
+	}
+	endSprite.setTexture(endTexture);
+	endSprite.setOrigin(1024, 1024);
+	endSprite.setPosition(SCREEN_WIDTH / 2.0f, -39300 + SCREEN_HEIGHT);
+	endSprite.setScale(0.3, 0.3);
 }
 
 void GamePlay::update(double t_deltaTime)
 {
+	if (!endScreen && view.getCenter().y < -38500)
+	{
+		endScreen = true;
+	}
+
 	if (m_oxygen.isDead())
 	{
 		Game::gameMusic.pause();
@@ -56,14 +77,16 @@ void GamePlay::update(double t_deltaTime)
 	{
 		spawnTimer = 0;
 
-		for (int i = 0; i < MAX_ENEMIES; i++)
+		if (!endScreen)
 		{
-			if (!enemies[i].active)
+			for (int i = 0; i < MAX_ENEMIES; i++)
 			{
-				enemies[i].activate(player.getPos(), view.getCenter().y);
-				break;
+				if (!enemies[i].active)
+				{
+					enemies[i].activate(player.getPos(), view.getCenter().y);
+					break;
+				}
 			}
-			
 		}
 	}
 	
@@ -79,17 +102,28 @@ void GamePlay::update(double t_deltaTime)
 			
 		}
 	}
-	m_mine.ChangePosition(player.getPos(), view);
-	m_mine.Update(t_deltaTime,view);
+
+	if (!endScreen)
+	{
+		m_mine.ChangePosition(player.getPos(), view);
+		m_mine.Update(t_deltaTime, view);
+	}
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
+
 	renderTexture.clear();
 
 	renderTexture.draw(backgroundSprite, &brightnessShader);
+	renderTexture.draw(skySprite);
+	renderTexture.draw(endSprite);
+
 	renderTexture.draw(player.getBody());
-	m_oxygen.Render(renderTexture);
+	if (!endScreen)
+	{
+		m_oxygen.Render(renderTexture);
+	}
 	
 	renderTexture.setView(view);
 
@@ -110,6 +144,9 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	sf::Sprite screenSprite(renderTexture.getTexture());
 	t_window.draw(screenSprite, &underWaterShader);
+
+
+	m_mine.Render(renderTexture);
 }
 
 
@@ -143,6 +180,9 @@ void GamePlay::loadShader() // shader.setUniform("texture", sf::Shader::CurrentT
 
 void GamePlay::moveView()
 {
-	view.setCenter(SCREEN_WIDTH / 2.0f, player.getPos().y - 200);
-	m_oxygen.MoveOxygenUI(view.getCenter());
+	if (view.getCenter().y > -38500)
+	{
+		view.setCenter(SCREEN_WIDTH / 2.0f, player.getPos().y - 200);
+		m_oxygen.MoveOxygenUI(view.getCenter());
+	}
 }

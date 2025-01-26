@@ -21,6 +21,12 @@ private:
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
 
+	sf::Texture skyTexture;
+	sf::Sprite skySprite;
+
+	sf::Texture endTexture;
+	sf::Sprite endSprite;
+
 	// Shader
 	sf::Clock clock;
 	sf::Texture noiseTexture;
@@ -44,5 +50,7 @@ private:
 	const int TIME_BETWEEN_SPAWNS = 2 * 60;
 	int spawnTimer = 0;
 	Collisions m_collision;
+
+	bool endScreen = false;
 };
 

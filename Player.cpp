@@ -7,12 +7,19 @@ Player::Player()
 	body.setRadius(RADIUS);
 	body.setOrigin(RADIUS, RADIUS);
 	position = { SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT * 0.8f };
+
 	body.setPosition(position);
 
 	if (!texture.loadFromFile("Assets/Art/Bubble.png"))
 	{
 		std::cout << "Couldnt load bubble texture \n";
 	}
+	if (!characterTexture.loadFromFile("Assets/Art/Player.png"))
+	{
+		std::cout << "Couldnt load player" << std::endl;
+	}
+	character.setTexture(characterTexture);
+	character.setScale(0.04, 0.04);
 	sprite.setTexture(texture);
 	sprite.setOrigin(211.5, 213.5);
 	sprite.setScale(0.2f, 0.2f);
@@ -28,6 +35,7 @@ void Player::move()
 
 	position += velocity;
 	body.setPosition(position);
+	character.setPosition(position+ sf::Vector2f{-40,-40});
 	sprite.setPosition(position);
 
 	edgeCollision();

@@ -9,7 +9,7 @@ public:
 
 	sf::CircleShape getBody() { return body; }
 	sf::Sprite getSprite() { return sprite; }
-
+	sf::Sprite getPlayerSprite(){ return character; }
 	sf::Vector2f getPos() { return position; }
 
 	void move();
@@ -25,6 +25,9 @@ private:
 	sf::CircleShape body;
 	const float RADIUS = 30;
 
+	//
+	sf::Sprite character;
+	sf::Texture characterTexture;
 	// Sprite / Texture
 	sf::Sprite sprite;
 	sf::Texture texture;

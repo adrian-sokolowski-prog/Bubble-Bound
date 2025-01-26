@@ -7,10 +7,13 @@ class Mine
 {
 public:
 	Mine();
-	void Render(sf::RenderWindow& t_window);
-	void Update(float t_dt);
+	void Render(sf::RenderTexture& t_renderTexture);
+	void Update(float t_dt, sf::View t_port);
 	sf::Sprite& GetSprite();
+	void SpawnMine(sf::View t_port);
+	void ChangePosition(sf::Vector2f t_playerPosition, sf::View t_viewPort);
 	bool isActive = 0;
+	float m_spawnTime = 0;
 private:
 
 	void init();

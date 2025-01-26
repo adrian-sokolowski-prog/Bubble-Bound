@@ -36,7 +36,11 @@ void GamePlay::update(double t_deltaTime)
 	moveView();
 	brightnessShader.setUniform("height", std::abs(player.getPos().y));
 
-
+	if (m_collision.CircleSpriteCollision(player.getBody(), m_mine.GetSprite()) && m_mine.isActive)
+	{
+		m_oxygen.TakeDMG(50);
+		m_mine.isActive = false;
+	}
 	player.move();
 
 	sf::CircleShape shape;
@@ -73,11 +77,8 @@ void GamePlay::update(double t_deltaTime)
 			
 		}
 	}
-	if (m_collision.CircleSpriteCollision(player.getBody(), m_mine.GetSprite()))
-	{
-		m_oxygen.TakeDMG(50);
-	}
-	m_mine.Update(t_deltaTime);
+	m_mine.ChangePosition(player.getPos(), view);
+	m_mine.Update(t_deltaTime,view);
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
@@ -92,6 +93,8 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	renderTexture.draw(player.getSprite());
 	
+	if(m_mine.isActive)
+		m_mine.Render(renderTexture);
 	for (Enemy& e : enemies)
 	{
 		if (e.active)
@@ -105,7 +108,6 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	sf::Sprite screenSprite(renderTexture.getTexture());
 	t_window.draw(screenSprite, &underWaterShader);
-	m_mine.Render(t_window);
 }
 
 

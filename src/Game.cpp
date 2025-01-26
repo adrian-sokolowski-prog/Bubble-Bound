@@ -35,17 +35,17 @@ Game::Game()
 		std::cout << "Promblem loading main menu theme" << std::endl;
 	}
 
-	Game::menuMusic.setVolume(100);         // reduce the volume
+	Game: menuMusic.setVolume(100);         // reduce the volume
 	Game::menuMusic.setLoop(true);
 	Game::menuMusic.play();
 
-	if (!Game::menuMusic.openFromFile("Assets/Music/EndingTrack.mp3"))
+	if (!Game::endMusic.openFromFile("Assets/Music/EndingTrack.mp3"))
 	{
 		std::cout << "Promblem loading ending track theme" << std::endl;
 	}
 
-	Game::menuMusic.setVolume(100);         // reduce the volume
-	Game::menuMusic.setLoop(true);
+	Game::endMusic.setVolume(100);         // reduce the volume
+	Game::endMusic.setLoop(true);
 
 }
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Audio/Music.hpp>
 #include "Button.h"
+#include <SFML/Audio.hpp>
 
 class MainMenu
 {
@@ -30,5 +31,7 @@ private:
 	sf::Sprite playSprite;
 	sf::Texture quitTexture;
 	sf::Sprite quitSprite;
+	sf::SoundBuffer bubblesBuffer;
+	sf::Sound bubblesSound;
 };
 

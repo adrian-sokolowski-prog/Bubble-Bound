@@ -5,6 +5,8 @@
 #include "Enemy.h"
 #include <iostream>
 #include "Mine.h"
+#include <SFML/Audio.hpp>
+
 class GamePlay
 {
 public:
@@ -34,6 +36,10 @@ private:
 	sf::Shader underWaterShader;
 	sf::Shader brightnessShader;
 	sf::RenderTexture renderTexture;
+	sf::SoundBuffer sharkBuffer;
+	sf::SoundBuffer mineBuffer;
+	sf::Sound sharkSound;
+	sf::Sound mineSound;
 
 	void moveView();
 	sf::View view;

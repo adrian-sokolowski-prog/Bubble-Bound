@@ -12,7 +12,6 @@ Enemy::Enemy()
 		std::cout << "Couldnt load enemy texture \n";
 	}
 	// Sprite
-	sprite.setTextureRect(sf::IntRect(0, 0, 388, 320));
 	position = { 200, 200 };
 	sprite.setPosition(position);
 	sprite.setOrigin(731, 721);
@@ -40,10 +39,12 @@ void Enemy::activate(sf::Vector2f t_targetPos, float t_viewCenter)
 	if (randTexture == 0)
 	{
 		sprite.setTexture(sharkTexture);
+		sprite.setTextureRect(sf::IntRect(0, 0, 820, 340));
 	}
 	else
 	{
 		sprite.setTexture(piranhaTexture);
+		sprite.setTextureRect(sf::IntRect(0, 0, 388, 320));
 	}
 
 	// Set position

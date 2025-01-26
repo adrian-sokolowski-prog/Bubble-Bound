@@ -119,8 +119,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	renderTexture.draw(backgroundSprite, &brightnessShader);
 	renderTexture.draw(skySprite);
 	renderTexture.draw(endSprite);
-	renderTexture.draw(player.getPlayerSprite());
-	//renderTexture.draw(player.getBody());
+
 	if (!endScreen)
 	{
 		m_oxygen.Render(renderTexture);
@@ -128,6 +127,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	
 	renderTexture.setView(view);
 
+	renderTexture.draw(player.getPlayerSprite());
 	renderTexture.draw(player.getSprite());
 	
 	if(m_mine.isActive)
@@ -146,8 +146,6 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	sf::Sprite screenSprite(renderTexture.getTexture());
 	t_window.draw(screenSprite, &underWaterShader);
 
-
-	m_mine.Render(renderTexture);
 }
 
 

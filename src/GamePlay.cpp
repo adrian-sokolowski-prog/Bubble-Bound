@@ -64,7 +64,17 @@ void GamePlay::update(double t_deltaTime)
 	{
 		m_oxygen.TakeDMG(50);
 		m_mine.isActive = false;
+
+		if (!mineBuffer.loadFromFile("Assets\\Sounds\\Mineexplosion.mp3"))
+		{
+			std::cout << "problem with mine sound" << std::endl;
+		}
+
+		mineSound.setBuffer(mineBuffer);
+		mineSound.play();
+		mineSound.setVolume(100);
 	}
+
 	player.move();
 
 	sf::CircleShape shape;
@@ -100,6 +110,15 @@ void GamePlay::update(double t_deltaTime)
 			std::cout << "Damage" << std::endl;
 			enemies[i].m_collied = true;
 			m_oxygen.TakeDMG(20);
+
+			if (!sharkBuffer.loadFromFile("Assets\\Sounds\\Shark.mp3"))
+			{
+				std::cout << "problem with shark sound" << std::endl;
+			}
+
+			sharkSound.setBuffer(sharkBuffer);
+			sharkSound.play();
+			sharkSound.setVolume(100);
 			
 		}
 	}

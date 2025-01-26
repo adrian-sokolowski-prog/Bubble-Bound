@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Globals.h"
 
+
 MainMenu::MainMenu()
 {
 	if (!backgroundTexture.loadFromFile("Assets/Art/start.png"))
@@ -30,6 +31,14 @@ MainMenu::MainMenu()
 	playButton.setupButton({ 200, 200 }, playSprite);
 	quitButton.setupButton({ SCREEN_WIDTH - 205, SCREEN_HEIGHT - 175 }, quitSprite);
 
+	if (!bubblesBuffer.loadFromFile("Assets\\Sounds\\bubbles.mp3"))
+	{
+		std::cout << "problem with bubble sound" << std::endl;
+	}
+
+	bubblesSound.setBuffer(bubblesBuffer);
+	bubblesSound.play();
+	bubblesSound.setVolume(100);
 
 }
 
@@ -68,10 +77,13 @@ void MainMenu::processMouseDown(sf::Event& t_event, sf::RenderWindow& t_window)
 {
 	if (playButton.colliding)
 	{
+
+
 		std::cout << "SWAP \n";
 		Game::menuMusic.pause();
 		Game::gameMusic.play();
 		Game::currentScene = Scene::GamePlay;
+		bubblesSound.play();
 	}
 	else if (quitButton.colliding)
 	{

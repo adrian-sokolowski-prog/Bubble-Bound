@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+
 #include "GamePlay.h"
 #include "MainMenu.h"
 #include "Oxygen.h"
@@ -41,6 +42,4 @@ private:
 	// main window
 	sf::RenderWindow m_window;
 
-
-	
 };

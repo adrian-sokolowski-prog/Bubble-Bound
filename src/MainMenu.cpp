@@ -4,13 +4,12 @@
 
 MainMenu::MainMenu()
 {
-	if (!backgroundTexture.loadFromFile("Assets/Art/background.png"))
+	if (!backgroundTexture.loadFromFile("Assets/Art/start.png"))
 	{
 		std::cout << "couldnt load background";
 	}
-	backgroundTexture.setRepeated(true);
 	backgroundSprite.setTexture(backgroundTexture);
-	backgroundSprite.setTextureRect(sf::IntRect(0, 3150, SCREEN_WIDTH, SCREEN_HEIGHT));
+	backgroundSprite.setPosition(0, -700);
 
 	if (!quitTexture.loadFromFile("Assets/Art/QuitButton.png"))
 	{

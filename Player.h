@@ -13,6 +13,7 @@ public:
 	sf::Vector2f getPos() { return position; }
 
 	void move();
+	void reset();
 
 private:
 
@@ -36,7 +37,7 @@ private:
 
 	sf::Vector2f position;
 	sf::Vector2f velocity;
-	float speed = 1.5f;// 0.15f;
+	float speed = 0.15f;
 	int driftAngle = -90;
 	const float DRIFT_INTENCITY = 0.07f;
 

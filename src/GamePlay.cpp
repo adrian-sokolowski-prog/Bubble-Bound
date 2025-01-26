@@ -55,6 +55,7 @@ void GamePlay::update(double t_deltaTime)
 		Game::menuMusic.play();
 		Game::currentScene = Scene::MainMenu;
 		m_oxygen.reset();
+		player.reset();
 	}
 	moveView();
 	brightnessShader.setUniform("height", std::abs(player.getPos().y));

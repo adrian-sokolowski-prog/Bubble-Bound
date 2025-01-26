@@ -12,6 +12,7 @@ Enemy::Enemy()
 		std::cout << "Couldnt load enemy texture \n";
 	}
 	// Sprite
+	sprite.setTextureRect(sf::IntRect(0, 0, 388, 320));
 	position = { 200, 200 };
 	sprite.setPosition(position);
 	sprite.setOrigin(731, 721);

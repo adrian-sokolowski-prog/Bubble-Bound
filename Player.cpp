@@ -41,6 +41,13 @@ void Player::move()
 	edgeCollision();
 }
 
+void Player::reset()
+{
+	position = { SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT * 0.8f };
+	character.setPosition(position); 
+	body.setPosition(position);
+}
+
 void Player::edgeCollision()
 {
 	if (position.x > SCREEN_WIDTH - RADIUS)

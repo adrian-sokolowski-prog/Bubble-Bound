@@ -16,7 +16,7 @@ public:
 	void ChangePosition(sf::Vector2f t_playerPosition, sf::View t_viewPort);
 	bool isDead();
 
-	void reset() { m_fillOxygen.setSize({200, 50}); }
+	void reset() { m_fillOxygen.setSize({ maxHP, 35}); }
 private:
 	sf::Sprite m_oxygenBar;
 	sf::Texture m_oxygenBarTexture;

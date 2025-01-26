@@ -2,7 +2,7 @@
 Global Games Jam 2025
 
 Coder : Adrian Sokolowski / 
-Art : Freya Prananta
+Art : Freya Prananta, Wiktoria Szeremeta / 
 Sound : 
 
 The player is bound inside a bubble deep underwater and needs to reach the surface. 

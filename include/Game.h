@@ -25,6 +25,7 @@ public:
 
 	static sf::Music gameMusic;
 	static sf::Music menuMusic;
+	static sf::Music endMusic;
 
 private:
 

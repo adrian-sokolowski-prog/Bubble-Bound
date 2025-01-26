@@ -10,6 +10,7 @@ Scene Game::currentScene = Scene::MainMenu;
 
 sf::Music Game::menuMusic;
 sf::Music Game::gameMusic;
+sf::Music Game::endMusic;
 
 ////////////////////////////////////////////////////////////
 Game::Game()
@@ -37,6 +38,15 @@ Game::Game()
 	Game::menuMusic.setVolume(100);         // reduce the volume
 	Game::menuMusic.setLoop(true);
 	Game::menuMusic.play();
+
+	if (!Game::menuMusic.openFromFile("Assets/Music/EndingTrack.mp3"))
+	{
+		std::cout << "Promblem loading ending track theme" << std::endl;
+	}
+
+	Game::menuMusic.setVolume(100);         // reduce the volume
+	Game::menuMusic.setLoop(true);
+
 }
 
 

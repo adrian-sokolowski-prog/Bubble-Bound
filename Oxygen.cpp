@@ -9,6 +9,7 @@ Oxygen::Oxygen()
 void Oxygen::Render(sf::RenderTexture& t_renderTexture)
 {
 	m_plant.Render(t_renderTexture);
+	t_renderTexture.draw(m_platform);
 	t_renderTexture.draw(m_oxygenBar);
 	t_renderTexture.draw(m_fillOxygen);
 }
@@ -17,6 +18,7 @@ void Oxygen::Update(float t_dt, sf::CircleShape t_player)
 {
 	m_timeBetweenUpdate += t_dt;
 	sf::Vector2f size = m_fillOxygen.getSize();
+	m_platform.setPosition(m_plant.GetPlant().getPosition()+ sf::Vector2f{-100,100});
 	if (m_timeBetweenUpdate > 50)
 	{
 		if (size.x > 0)
@@ -94,4 +96,11 @@ void Oxygen::init()
 	{
 		std::cout << "issue loading plant" << std::endl;
 	}
+
+	if (!m_platformTexture.loadFromFile("Assets/Art/platform.png"))
+	{
+		std::cout << "platform issue loading" << std::endl;
+	}
+	m_platform.setTexture(m_platformTexture);
+
 }

@@ -1,9 +1,9 @@
 # Bubble-Bound
 Global Games Jam 2025
 
-Coder : Adrian Sokolowski / 
+Coder : Adrian Sokolowski / Ian Perez Bunuel
 Art : Freya Prananta, Wiktoria Szeremeta / 
-Sound : 
+Sound : Ciaran Kinsella
 
 The player is bound inside a bubble deep underwater and needs to reach the surface. 
 The objective of this game is to reach the surface and survive the deep ocean.

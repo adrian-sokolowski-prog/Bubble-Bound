@@ -1,7 +1,7 @@
 # Bubble-Bound
 Global Games Jam 2025
 
-Coder : 
+Coder : Adrian Sokolowski / 
 Art : Freya Prananta
 Sound : 
 
